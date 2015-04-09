@@ -1,0 +1,33 @@
+{
+  "name": "lazy-attribute",
+  "version": "1.0.0",
+  "description": "Delay setting an elements attribute for lazy-loading",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TuxSudo/lazy-attribute.git"
+  },
+  "keywords": [
+    "lazy-load"
+  ],
+  "author": "Jared Anderson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TuxSudo/lazy-attribute/issues"
+  },
+  "homepage": "https://github.com/TuxSudo/lazy-attribute",
+   "devDependencies": {
+    "gulp": "^3.8.11",
+    "gulp-babel": "^4.0.0",
+    "gulp-clean": "^0.3.1",
+    "gulp-es6-module-transpiler": "^0.2.1",
+    "gulp-flatten": "0.0.4",
+    "gulp-jshint": "^1.9.4",
+    "gulp-load-plugins": "^0.9.0",
+    "gulp-rename": "^1.2.0",
+    "gulp-uglify": "^1.1.0"
+  }
+}
