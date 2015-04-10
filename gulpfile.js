@@ -7,7 +7,7 @@ gulp.task('default', ['es5', 'commonjs']);
 
 gulp.task('es5', ['clean', 'lint'],  function () {
 
-    return gulp.src('es6/*.js')
+    return gulp.src('lib/*.js')
         .pipe($.es6ModuleTranspiler({
             formatter: 'bundle'
         }))

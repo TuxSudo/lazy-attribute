@@ -2,36 +2,59 @@
 
 attributeMap should look like:
 
-{
-    'data-lazy-src': 'src'
-}
+    {
+        'data-lazy-src': 'src'
+    }
 
 where `data-lazy-src` converts to `src` on command.
 
 
+to convert, either:
 
-listeners sould look like:
-{
-    'load': function(e){}
-}
+
+1) execute returned function eg:
+
+    var el = document.querySelector('.item'),
+        lazy = lazyAttr(el, {'data-lazy-srcset': 'srcset'} );
+
+    lazy();
+
+
+2) fire event
+
+     var el = document.querySelector('.item'),
+        lazy = lazyAttr(el, {'data-lazy-srcset': 'srcset'} );
+
+    el.dispatchEvent(new CustomEvent('attribute.load.cmd'));
+
 
 */
 
 "use strict";
 
-module.exports = lazyAttribute;
+module.exports = function (element, attributeMap) {
 
-function lazyAttribute(element, attributeMap) {
+    var loader = (function (_loader) {
+        var _loaderWrapper = function loader() {
+            return _loader.apply(this, arguments);
+        };
 
-    var loader = function loader() {
+        _loaderWrapper.toString = function () {
+            return _loader.toString();
+        };
+
+        return _loaderWrapper;
+    })(function () {
 
         Object.keys(attributeMap).forEach(function (k) {
             element.setAttribute(attributeMap[k], element.getAttribute(k));
-            element.dispatchEvent(new CustomEvent("attribute.load", { bubbles: true, detail: attributeMap[k] }));
         });
-    };
+
+        element.dispatchEvent(new CustomEvent("attribute.load", { bubbles: true }));
+        element.removeEventListener("attribute.load.cmd", loader);
+    });
 
     element.addEventListener("attribute.load.cmd", loader);
 
     return loader;
-}
+};

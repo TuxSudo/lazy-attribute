@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Lazy Attribute Loader</title>
+</head>
+<body>
+
+
+<div>
+<img class="lazy1" data-lazy-src="http://placehold.it/400x400" style="width:400px; height:400px" alt="lazy loaded image" />
+</div>
+
+<button class="lazy1cmd">Lazy Load</button>
+
+
+
+
+<hr />
+
+
+<img class="lazy2" data-lazy-src="http://placehold.it/300x300" style="width:300px; height:300px" alt="click to load" />
+
+
+<script src="../es5/lazy-attribute.min.js"></script>
+<script>
+
+
+document.addEventListener('DOMContentLoaded', function(){
+
+    var img = document.querySelector('.lazy1'),
+        btn = document.querySelector('.lazy1cmd');
+
+    btn.addEventListener('click', lazyAttribute(img, {'data-lazy-src': 'src'}));
+
+
+    var img2 = document.querySelector('.lazy2');
+
+    lazyAttribute(img2, {'data-lazy-src': 'src'});
+    img2.addEventListener('click', function(){
+        this.dispatchEvent(new CustomEvent('attribute.load.cmd'));
+    });
+
+});
+
+</script>
+
+
+</body>
+</html>
