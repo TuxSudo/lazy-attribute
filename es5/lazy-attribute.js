@@ -3,32 +3,26 @@
 (function () {
     "use strict";
 
-    var $$$es6$lazy$attribute$$default = function $$$es6$lazy$attribute$$default(element, attributeMap) {
+    var $$$es6$map$$default = function $$$es6$map$$default(attributeMap) {
 
-        var loader = (function (_loader) {
-            var _loaderWrapper = function loader() {
-                return _loader.apply(this, arguments);
-            };
-
-            _loaderWrapper.toString = function () {
-                return _loader.toString();
-            };
-
-            return _loaderWrapper;
-        })(function () {
+        return function () {
+            var _this = this;
 
             Object.keys(attributeMap).forEach(function (k) {
-                element.setAttribute(attributeMap[k], element.getAttribute(k));
+                return _this.setAttribute(attributeMap[k], _this.getAttribute(k));
             });
-
-            element.dispatchEvent(new CustomEvent("attribute.load", { bubbles: true }));
-            element.removeEventListener("attribute.load.cmd", loader);
-        });
-
-        element.addEventListener("attribute.load.cmd", loader);
-
-        return loader;
+            this.dispatchEvent(new CustomEvent("attribute.load", { bubbles: true }));
+        };
     };
 
-    window.lazyAttribute = $$$es6$lazy$attribute$$default;
+    function $$$es6$listen$$listen() {
+
+        window.addEventListener("attribute.load.cmd", function (e) {
+            var loader = $$$es6$map$$default(e.detail);
+            loader.call(e.target);
+        });
+    }
+    var $$$es6$listen$$default = $$$es6$listen$$listen;
+
+    window.lazyAttribute = { map: $$$es6$map$$default, listen: $$$es6$listen$$default };
 }).call(undefined);
