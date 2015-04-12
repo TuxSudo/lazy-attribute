@@ -3,7 +3,7 @@
 (function () {
     "use strict";
 
-    var $$$es6$map$$default = function $$$es6$map$$default(attributeMap) {
+    var $$map$$default = function $$map$$default(attributeMap) {
 
         return function () {
             var _this = this;
@@ -15,14 +15,19 @@
         };
     };
 
-    function $$$es6$listen$$listen() {
+    function $$listen$$listen() {
 
         window.addEventListener("attribute.load.cmd", function (e) {
-            var loader = $$$es6$map$$default(e.detail);
+            var loader = $$map$$default(e.detail);
             loader.call(e.target);
         });
     }
-    var $$$es6$listen$$default = $$$es6$listen$$listen;
+    var $$listen$$default = $$listen$$listen;
 
-    window.lazyAttribute = { map: $$$es6$map$$default, listen: $$$es6$listen$$default };
+    var $$$es6$index$$default = {
+        map: $$map$$default,
+        listen: $$listen$$default
+    };
+
+    window.lazyAttribute = $$$es6$index$$default;
 }).call(undefined);
