@@ -11,7 +11,7 @@
             Object.keys(attributeMap).forEach(function (k) {
                 return _this.setAttribute(attributeMap[k], _this.getAttribute(k));
             });
-            this.dispatchEvent(new CustomEvent("attribute.load", { bubbles: true }));
+            this.dispatchEvent(new CustomEvent("attribute.load", { bubbles: true, detail: attributeMap }));
         };
     };
 

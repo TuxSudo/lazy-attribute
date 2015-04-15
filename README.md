@@ -48,3 +48,18 @@ btn.addEventListener('click', function(){
     );
 });
 ```
+
+
+# Listening for attribute changes
+
+Listen / react to lazy-loaded attribute
+
+```
+img.addEventListener('attribute.load', function(e){
+    // e.detail is the attribute map
+    console.log('These attributes changed: %s', Object.keys(e.detail).join(', '));
+
+})
+
+
+img.ad
