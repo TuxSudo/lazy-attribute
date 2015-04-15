@@ -57,9 +57,9 @@ Listen / react to lazy-loaded attribute
 ```
 img.addEventListener('attribute.load', function(e){
     // e.detail is the attribute map
-    console.log('These attributes changed: %s', Object.keys(e.detail).join(', '));
+    console.log('These attributes changed: %s', 
+        Object.keys(e.detail).join(', ')
+    );
 
 })
 
-
-img.ad
