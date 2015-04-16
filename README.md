@@ -1,5 +1,5 @@
-# lazy-attribute
-Delay setting an elements attribute for lazy-loading.
+# Lazy Attribute
+Delay setting an elements attribute for lazy-loading of resources (images, scripts, styles, etc.)
 
 
 ## Example 1
@@ -32,10 +32,13 @@ With the following, preconfigured lazy-loaded image
 
 ```
 
-Convert by custom event
+Listen for custom events
 ```
 lazyAttribute.listen();
+```
 
+Contrived example of triggering a bubbling custom event:
+```
 var img = document.querySelector('.lazy'),
     btn = document.querySelector('.button');
 
@@ -50,9 +53,9 @@ btn.addEventListener('click', function(){
 ```
 
 
-# Listening for attribute changes
+## Listening for attribute changes
 
-Listen / react to lazy-loaded attribute
+Listen & react to lazy-loaded attribute changes
 
 ```
 img.addEventListener('attribute.load', function(e){
@@ -61,5 +64,5 @@ img.addEventListener('attribute.load', function(e){
         Object.keys(e.detail).join(', ')
     );
 
-})
-
+});
+```
